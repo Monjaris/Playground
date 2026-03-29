@@ -148,14 +148,14 @@ LD_NOINLINE bool checkCollisionEllipses(Vec2 p1, Vec2 rr1, Vec2 p2, Vec2 rr2)
 
 
 LD_NOINLINE
-void trait_move(Vec2& vel, f32 speed, bool diagonals=true)
+void trait_move(Vec2& vel, f32 speed, int (&&keys)[4], bool diagonals=true)
 {
     enum { LEFT, RIGHT, UP, DOWN };
     bool dir[4] = {
-        IsKeyDown(KEY_LEFT),
-        IsKeyDown(KEY_RIGHT),
-        IsKeyDown(KEY_UP),
-        IsKeyDown(KEY_DOWN)
+        IsKeyDown(keys[1]),
+        IsKeyDown(keys[3]),
+        IsKeyDown(keys[0]),
+        IsKeyDown(keys[2])
     };
 
     if (diagonals) {

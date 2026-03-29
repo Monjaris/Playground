@@ -4,7 +4,7 @@
 struct Bullet
 {
     Color color = Color{200, 150, 165, 210};
-    Vec2 rad = {};
+    f32 radius = {};
 
     Vec2 pos = {};
     Vec2 vel = {0, 0};
@@ -16,16 +16,15 @@ struct Bullet
 
     Bullet& setInitialSpeed(f32 initial_speed) {ini_speed = initial_speed; return *this;}
     Bullet& setColor(Color color) {this->color = color; return *this;}
-    Bullet& setRadius(Vec2 radius) {this->rad = radius; return *this;}
+    Bullet& setRadius(f32 radius) {this->radius = radius; return *this;}
     Bullet& setPosition(Vec2 position) {pos = position; return *this;}
     Bullet& setVelocity(Vec2 velocity) {vel = velocity; return *this;}
-    Bullet& setDirectionAngle(f32 degrees) {dir_angle  = degrees; return *this;}
+    Bullet& setDirectionAngle(f32 radians) {dir_angle  = radians; return *this;}
     Bullet& setSpeed(f32 speed) {this->speed = speed; return *this;}
     Bullet& setAccelaration(f32 accelaration) {accel = accelaration; return *this;}
 
-    f32 get_angle(bool radians=true) {
-        return (radians)?
-        (DEG2RAD*dir_angle):(dir_angle);
+    f32 get_angle() {
+        return dir_angle;
     }
 
 
@@ -48,8 +47,8 @@ struct Bullet
 
     void render()
     {
-        DrawEllipseV(
-            pos, rad.x*cosf(get_angle()), rad.y*cosf(get_angle()), color
+        DrawCircleV(
+            pos, radius, color
         );
     }
 

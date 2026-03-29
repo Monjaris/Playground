@@ -27,7 +27,7 @@ struct Player
     // to store shared common bullet properties
     struct {
         Color color ={WHITE};
-        Vec2 radius = {8, 15};
+        f32 radius = 15;
         f32 ini_speed = 50;
         f32 accel = 20;
     } bullet_template;
@@ -48,7 +48,8 @@ struct Player
     }
 
     void input_active() {
-        trait_move(vel, speed);
+        trait_move(vel, speed, {KEY_W, KEY_A, KEY_S, KEY_D});
+        trait_move(vel, speed, {KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT});
 
         if (isKeyPressing(KEY_X)) {
             log "Removing player!\n";
@@ -92,14 +93,14 @@ struct Player
 
         joystick.loop();
 
-        if (joystick.on_fire()) {
+        if (joystick.on_fired()) {
             log "Bullet shot! " << vepr(pos) << "\n";
-            Bullet bullet = bullet
+            auto bullet = Bullet{}
                 .setPosition(pos)
                 .setRadius(bullet_template.radius)
                 .setColor(bullet_template.color)
                 .setInitialSpeed(bullet_template.ini_speed)
-                .setDirectionAngle(joystick.angle())
+                .setDirectionAngle(joystick.angle(true))
                 .setAccelaration(bullet_template.accel)
             ;
             bullets.push_back((bullet.start(), bullet));

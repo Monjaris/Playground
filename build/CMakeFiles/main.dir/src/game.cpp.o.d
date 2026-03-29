@@ -1,11 +1,11 @@
 CMakeFiles/main.dir/src/game.cpp.o: \
- /home/ziya/dev/main/platformer/src/game.cpp /usr/include/stdc-predef.h \
- /home/ziya/dev/main/platformer/src/game.hpp \
- /home/ziya/dev/main/platformer/src/player.hpp \
- /home/ziya/dev/main/platformer/src/joystick.hpp \
- /home/ziya/dev/main/platformer/src/core.h /usr/include/raylib.h \
+ /home/ziya/dev/main/playground/src/game.cpp /usr/include/stdc-predef.h \
+ /home/ziya/dev/main/playground/src/game.hpp \
+ /home/ziya/dev/main/playground/src/player.hpp \
+ /home/ziya/dev/main/playground/src/joystick.hpp \
+ /home/ziya/dev/main/playground/src/core.h /usr/include/raylib.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
- /home/ziya/dev/main/platformer/src/common.h \
+ /home/ziya/dev/main/playground/src/common.h \
  /usr/include/c++/15.2.1/iostream \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -223,4 +223,4 @@ CMakeFiles/main.dir/src/game.cpp.o: \
  /usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
  /usr/include/c++/15.2.1/cstring /usr/include/string.h \
- /usr/include/strings.h /home/ziya/dev/main/platformer/src/bullet.hpp
+ /usr/include/strings.h /home/ziya/dev/main/playground/src/bullet.hpp

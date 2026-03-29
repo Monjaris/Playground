@@ -15,27 +15,33 @@ struct Joystick
     Color aiming_color = {45, 78, 255, 210};
     Color outer_color = {45, 78, 255, 210};
 
+    f32 cached_angle = 0;
     bool pressed_on = false;
     bool aiming = false;
     bool fired = false;
     bool fire_frame = false;
 
-    f32 area_r() {
+    inline f32 outer_r() {
         return radius * outer_rad_k;
     }
-    f32 angle(bool radians=true) {
-        Vec2 delta = pos - outer_pos;
-        return (radians? (1.0f):(RAD2DEG)) * atan2f(delta.y, delta.x);
-    }
-    bool on_fire() {
+    inline bool on_fired() {
         return fire_frame;
+    }
+    inline f32 angle(bool get_cached_angle = false) {
+        if (!get_cached_angle) {
+            Vec2 delta = pos - outer_pos;
+            return atan2f(delta.y, delta.x);
+        }
+        else {
+            return cached_angle;
+        }
     }
 
     void start() {}
     void reload() {}
 
     void input() {
-        if (!pressed_on && isMousePressed() && isMouseInside(outer_pos, area_r())) {
+        if (!pressed_on && isMousePressed() && isMouseInside(outer_pos, outer_r())) {
             pressed_on = true;
             outer_pos = pos = GetMousePosition(); // snap on initial press
         }
@@ -56,14 +62,15 @@ struct Joystick
             pos = GetMousePosition();
         }
         if (fired) {
-            log "fired! (" << angle(false) << ")\n";
+            log "fired! (" << RAD2DEG*angle() << ")\n";
+            cached_angle = angle();
             pos = outer_pos = base_pos;
             fire_frame = true;
             fired = false;
         }
 
         if (bound_enabled) {
-            Circle bound = {outer_pos, area_r()+radius};
+            Circle bound = {outer_pos, outer_r()+radius};
             Circle trapped = {pos, radius};
             trait_bounding_area(bound, trapped);
             outer_pos = bound.pos;
@@ -78,7 +85,7 @@ struct Joystick
             DrawCircle(pos.x, pos.y, radius, color);
         }
 
-        DrawCircleLinesV(outer_pos, area_r(), outer_color);
+        DrawCircleLinesV(outer_pos, outer_r(), outer_color);
     }
 
     void quit() {}

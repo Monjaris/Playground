@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ziya/dev/main/platformer
+CMAKE_SOURCE_DIR = /home/ziya/dev/main/playground
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ziya/dev/main/platformer/build
+CMAKE_BINARY_DIR = /home/ziya/dev/main/playground/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -73,32 +73,32 @@ CMakeFiles/main.dir/codegen:
 .PHONY : CMakeFiles/main.dir/codegen
 
 CMakeFiles/main.dir/src/game.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/src/game.cpp.o: /home/ziya/dev/main/platformer/src/game.cpp
+CMakeFiles/main.dir/src/game.cpp.o: /home/ziya/dev/main/playground/src/game.cpp
 CMakeFiles/main.dir/src/game.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ziya/dev/main/platformer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/src/game.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/game.cpp.o -MF CMakeFiles/main.dir/src/game.cpp.o.d -o CMakeFiles/main.dir/src/game.cpp.o -c /home/ziya/dev/main/platformer/src/game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ziya/dev/main/playground/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/src/game.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/game.cpp.o -MF CMakeFiles/main.dir/src/game.cpp.o.d -o CMakeFiles/main.dir/src/game.cpp.o -c /home/ziya/dev/main/playground/src/game.cpp
 
 CMakeFiles/main.dir/src/game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ziya/dev/main/platformer/src/game.cpp > CMakeFiles/main.dir/src/game.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ziya/dev/main/playground/src/game.cpp > CMakeFiles/main.dir/src/game.cpp.i
 
 CMakeFiles/main.dir/src/game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ziya/dev/main/platformer/src/game.cpp -o CMakeFiles/main.dir/src/game.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ziya/dev/main/playground/src/game.cpp -o CMakeFiles/main.dir/src/game.cpp.s
 
 CMakeFiles/main.dir/src/main.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/src/main.cpp.o: /home/ziya/dev/main/platformer/src/main.cpp
+CMakeFiles/main.dir/src/main.cpp.o: /home/ziya/dev/main/playground/src/main.cpp
 CMakeFiles/main.dir/src/main.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ziya/dev/main/platformer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.cpp.o -MF CMakeFiles/main.dir/src/main.cpp.o.d -o CMakeFiles/main.dir/src/main.cpp.o -c /home/ziya/dev/main/platformer/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ziya/dev/main/playground/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.cpp.o -MF CMakeFiles/main.dir/src/main.cpp.o.d -o CMakeFiles/main.dir/src/main.cpp.o -c /home/ziya/dev/main/playground/src/main.cpp
 
 CMakeFiles/main.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ziya/dev/main/platformer/src/main.cpp > CMakeFiles/main.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ziya/dev/main/playground/src/main.cpp > CMakeFiles/main.dir/src/main.cpp.i
 
 CMakeFiles/main.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ziya/dev/main/platformer/src/main.cpp -o CMakeFiles/main.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ziya/dev/main/playground/src/main.cpp -o CMakeFiles/main.dir/src/main.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -115,7 +115,7 @@ main: CMakeFiles/main.dir/compiler_depend.ts
 main: /usr/lib/libraylib.so.6.0.0
 main: /usr/lib/libSDL3.so.0.4.2
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ziya/dev/main/platformer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ziya/dev/main/playground/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -127,6 +127,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/ziya/dev/main/platformer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ziya/dev/main/platformer /home/ziya/dev/main/platformer /home/ziya/dev/main/platformer/build /home/ziya/dev/main/platformer/build /home/ziya/dev/main/platformer/build/CMakeFiles/main.dir/DependInfo.cmake "--color=$(COLOR)" main
+	cd /home/ziya/dev/main/playground/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ziya/dev/main/playground /home/ziya/dev/main/playground /home/ziya/dev/main/playground/build /home/ziya/dev/main/playground/build /home/ziya/dev/main/playground/build/CMakeFiles/main.dir/DependInfo.cmake "--color=$(COLOR)" main
 .PHONY : CMakeFiles/main.dir/depend
 
