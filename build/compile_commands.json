@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/ziya/dev/main/platformer/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP_SDL -DUSE_LIBTYPE_SHARED  -O0 -Wall -Wextra -g -std=gnu++23 -o CMakeFiles/main.dir/src/game.cpp.o -c /home/ziya/dev/main/platformer/src/game.cpp",
+  "file": "/home/ziya/dev/main/platformer/src/game.cpp",
+  "output": "CMakeFiles/main.dir/src/game.cpp.o"
+},
+{
+  "directory": "/home/ziya/dev/main/platformer/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP_SDL -DUSE_LIBTYPE_SHARED  -O0 -Wall -Wextra -g -std=gnu++23 -o CMakeFiles/main.dir/src/main.cpp.o -c /home/ziya/dev/main/platformer/src/main.cpp",
+  "file": "/home/ziya/dev/main/platformer/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.o"
+}
+]

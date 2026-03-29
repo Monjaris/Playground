@@ -1,0 +1,3 @@
+/home/ziya/dev/main/platformer/build/CMakeFiles/main.dir
+/home/ziya/dev/main/platformer/build/CMakeFiles/edit_cache.dir
+/home/ziya/dev/main/platformer/build/CMakeFiles/rebuild_cache.dir

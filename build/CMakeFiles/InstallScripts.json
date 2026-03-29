@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ziya/dev/main/platformer/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

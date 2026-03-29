@@ -1,0 +1,1 @@
+/usr/bin/c++ -O0 -Wall -Wextra -g -Wl,--dependency-file=CMakeFiles/main.dir/link.d CMakeFiles/main.dir/src/game.cpp.o CMakeFiles/main.dir/src/main.cpp.o -o main  /usr/lib/libraylib.so.6.0.0 /usr/lib/libSDL3.so.0.4.2
