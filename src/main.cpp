@@ -8,6 +8,7 @@ int main()
     InitWindow(G::ini_win_w, G::ini_win_h, G::win_title);
     SetTargetFPS(G::max_fps);
 
+    std::ios::sync_with_stdio(false);
     Game game;
     game.start();
 

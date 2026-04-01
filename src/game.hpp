@@ -4,6 +4,7 @@
 struct Game
 {
     std::vector<Player> players;
+    std::optional<Animation> animation;
 
     void activate_next_player(const uint32 current_idx) {
         if (players.size() <= 1ul) {

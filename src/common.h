@@ -7,6 +7,8 @@
 #include <random>
 #include <charconv>
 #include <cstring>
+#include <functional>
+#include "parser.hpp"
 
 #define log std::cerr<<
 #define COLOR3(R, G, B) {R, G, B, 255}
@@ -47,7 +49,8 @@ struct Animation {
 
     f32 from, to;
     f32 duration;
-    bool loop;
+    bool loop = false;
+    std::function<void()> resetter = {};
 
     Clock::time_point started_at;
 
@@ -57,8 +60,8 @@ struct Animation {
         started_at(Clock::now())
     {}
 
-    static Animation make(f32 from, f32 to, f32 duration_ms, bool loop = false) {
-        return Animation(from, to, duration_ms, loop);
+    void make(f32& from, f32 to, f32 duration_ms, bool loop = false) {
+        *this = Animation(from, to, duration_ms, loop);
     }
 
     f32 value() const {
@@ -71,11 +74,16 @@ struct Animation {
         return from + (to - from) * alpha;
     }
 
-    bool done() const {
+    void defer(std::function<void()> resetter) {
+        this->resetter = resetter;
+    }
+
+    bool done() {
         auto now = Clock::now();
         f32 elapsed = std::chrono::duration<f32, std::milli>(now - started_at).count();
         if (loop) return elapsed >= duration * 2.0f; // full there-and-back
         return elapsed >= duration;
     }
+
 };
 

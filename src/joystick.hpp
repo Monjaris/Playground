@@ -48,7 +48,7 @@ struct Joystick
 
         aiming = pressed_on && isMouseDown();
 
-        if (isMouseReleased()) {
+        if (pressed_on && isMouseReleased()) {
             fired = true;
             pressed_on = false;
             aiming = false;

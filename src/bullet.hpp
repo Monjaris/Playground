@@ -3,16 +3,26 @@
 
 struct Bullet
 {
+    bool alive = true;
+
     Color color = Color{200, 150, 165, 210};
-    f32 radius = {};
+    f32 radius_ini = 50;
+    f32 radius = radius_ini;
 
     Vec2 pos = {};
     Vec2 vel = {0, 0};
     f32 dir_angle = 0;
 
-    static inline f32 ini_speed = 120;
+    f32 ini_speed = 120;
     f32 speed = ini_speed;
     f32 accel = 40;
+
+    bool hit_opponent = false;
+
+    std::optional<Animation> animation;
+
+    // Bullet (auto* player) { parent = player; }
+    ~Bullet () { log "Bullet got destroyed!\n"; }
 
     Bullet& setInitialSpeed(f32 initial_speed) {ini_speed = initial_speed; return *this;}
     Bullet& setColor(Color color) {this->color = color; return *this;}

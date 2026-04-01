@@ -81,13 +81,26 @@ inline bool isInsideRect(Vec2 pos, Vec2 rec_pos, Vec2 size) {
     );
 }
 
-template<typename Float>
+template <typename Float>
 requires std::is_arithmetic_v<Float> LD_NOINLINE
 Float randf(Float x, Float y) {
-    thread_local static std::mt19937_64 prng(
-        std::random_device{}.operator()()  // hate ambiguity
-    );
+    if (x > y) std::swap(x, y);
+    thread_local static std::mt19937_64 prng(std::random_device{}());
     return std::uniform_real_distribution<Float>(x, y)(prng);
+}
+
+template <typename Integer>
+requires std::is_integral_v<Integer> LD_NOINLINE
+Integer randint(Integer x, Integer y) {
+    if (x > y) std::swap(x, y);
+    thread_local static std::mt19937_64 prng(std::random_device{}());
+    return std::uniform_int_distribution<Integer>(x, y)(prng);
+}
+
+template <class... Args, class Arg = std::common_type_t<Args...>>
+Arg random_choice(Args... args) {
+    const Arg choices[] = {args...};
+    return choices[randint(0lu, sizeof(choices)-1)];
 }
 
 constexpr inline f32 distance_2(Vec2 p1, Vec2 p2) {
@@ -99,6 +112,25 @@ constexpr inline f32 distance_2(Vec2 p1, Vec2 p2) {
 
 inline f32 distance(Vec2 p1, Vec2 p2) {
     return std::sqrtf(distance_2(p1, p2));
+}
+
+inline bool after(f32& ms) {
+    static f32 timers[1024] = {0};
+
+    constexpr uint id = __COUNTER__;
+    f32& t = timers[id];
+
+    if (t == 0.0f) {
+        t = ms;
+    }
+
+    t -= G::dt*1000;
+
+    if (t <= 0.0f) {
+        t = 0.0f;
+        return true;
+    }
+    else return false;
 }
 
 
@@ -147,16 +179,22 @@ LD_NOINLINE bool checkCollisionEllipses(Vec2 p1, Vec2 rr1, Vec2 p2, Vec2 rr2)
 }
 
 
-LD_NOINLINE
-void trait_move(Vec2& vel, f32 speed, int (&&keys)[4], bool diagonals=true)
+/// @returns `true` if it actually got the input and applied the velocity
+/// @arg `keys` follows this order: <LEFT,RIGHT,UP,DOWN>
+LD_NOINLINE bool trait_move(Vec2& vel, f32 speed, int (&&keys)[4], bool diagonals=true)
 {
     enum { LEFT, RIGHT, UP, DOWN };
     bool dir[4] = {
-        IsKeyDown(keys[1]),
-        IsKeyDown(keys[3]),
-        IsKeyDown(keys[0]),
-        IsKeyDown(keys[2])
+        IsKeyDown(keys[0]),  // A | <-
+        IsKeyDown(keys[1]),  // D | ->
+        IsKeyDown(keys[2]),  // W | ^
+        IsKeyDown(keys[3]),  // S | v
     };
+
+    // early return if not required inputs are received
+    if (!dir[0] && !dir[1] && !dir[2] && !dir[3]) {
+        return false;
+    }
 
     if (diagonals) {
         f32 dx, dy, k;
@@ -175,6 +213,8 @@ void trait_move(Vec2& vel, f32 speed, int (&&keys)[4], bool diagonals=true)
         else if (dir[UP])    vel.y -= speed * G::dt;
         else if (dir[DOWN])  vel.y += speed * G::dt;
     }
+
+    return true; // confirm that applied
 }
 
 
@@ -217,23 +257,50 @@ template <class Bound, class Trapped> requires
 void trait_bounding_area(Bound& _bound, Trapped& obj)
 {
 
-if constexpr (std::is_same_v<Bound, Circle>)
-{
-    Circle& bound = _bound;
-    Vec2 delta = obj.pos - bound.pos;
-    f32 dist = sqrtf(distance_2(obj.pos, bound.pos));
-    f32 max_dist = bound.r - obj.r;
-    if (dist >= max_dist) {
-        f32 scale = (max_dist)/(dist);
-        obj.pos.x = bound.pos.x + scale*delta.x;
-        obj.pos.y = bound.pos.y + scale*delta.y;
+    if constexpr (std::is_same_v<Bound, Circle>)
+    {
+        Circle& bound = _bound;
+        Vec2 delta = obj.pos - bound.pos;
+        f32 dist = sqrtf(distance_2(obj.pos, bound.pos));
+        f32 max_dist = bound.r - obj.r;
+        if (dist >= max_dist) {
+            f32 scale = (max_dist)/(dist);
+            obj.pos.x = bound.pos.x + scale*delta.x;
+            obj.pos.y = bound.pos.y + scale*delta.y;
+        }
+    }
+
+    else if constexpr (std::is_same_v<Bound, Rect>)
+    {
+        log "Unimplemented! SEE: " << __func__ << "\n";
+    }
+
+}
+
+
+template <class T> requires
+requires(T obj) {obj.pos;}
+void trait_handle_outside(T& obj, Vec2 min, Vec2 max, std::function<void()> handle) {
+    if(
+        obj.pos.x > max.x || obj.pos.x < min.x ||
+        obj.pos.y > max.y || obj.pos.y < min.y
+    ){
+        // call destructor
+        handle();
     }
 }
 
-else if constexpr (std::is_same_v<Bound, Rect>)
-{
-    log "Unimplemented! SEE: " << __func__ << "\n";
-}
 
+template <class T>
+void trait_apply_animations(
+    T& value, std::optional<Animation>& animation, std::function<void()> defer = {}
+){
+    if (!animation.has_value()) return;
+    if (!animation->done()) {
+        value = animation->value();
+    } else {
+        if (defer) defer();
+        animation.reset();
+    }
 }
 
