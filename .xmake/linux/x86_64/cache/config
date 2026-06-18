@@ -1,0 +1,9 @@
+{
+    options = {
+        trybuild = "cmake"
+    },
+    mtimes = {
+        ["xmake.lua"] = 1781778088
+    },
+    recheck = false
+}

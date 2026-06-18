@@ -9,11 +9,13 @@ BUILD_TYPE="Debug"
 PASSTHROUGH=()
 RUN_DEFAULT=true
 
-# Parse args
-# ./build.sh            → run default (no args to binary)
-# ./build.sh other      → run with "other" as arg
-# ./build.sh -- --help  → pass --help to binary
-# ./build.sh pass --help→ same
+
+
+if [[ "$1" == "dev" ]]; then
+    xmake run
+    exit
+fi
+
 
 for arg in "$@"; do
     if [[ "$arg" == "--" ]]; then

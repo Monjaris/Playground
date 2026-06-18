@@ -1,3 +1,0 @@
-/home/ziya/dev/main/playground/build/CMakeFiles/main.dir
-/home/ziya/dev/main/playground/build/CMakeFiles/edit_cache.dir
-/home/ziya/dev/main/playground/build/CMakeFiles/rebuild_cache.dir

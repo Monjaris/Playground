@@ -13,11 +13,11 @@
 #define log std::cerr<<
 #define COLOR3(R, G, B) {R, G, B, 255}
 
-#ifdef __GNUC__
+#if defined(__GNUC__)
 #   define LD_NOINLINE [[gnu::noinline]] inline
-#elifdef __clang__
+#elif defined(__clang__)
 #   define LD_NOINLINE [[clang::noinline]] inline
-#elifdef _MSC_VER
+#elif defined(_MSC_VER)
 #   define LD_NOINLINE __declspec(noinline) inline
 #else
 #   define LD_NOINLINE
